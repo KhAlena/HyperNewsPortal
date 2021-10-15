@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hyper news</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<h2>Hyper news</h2>
+    <form action="/news/" method="get">
+        <p>Search:</p>
+        <input type="text" name="q">
+        <button type="submit">Send</button>
+    </form>
+{% for date, item in news.items %}
+    <h4>{{ date }}</h4>
+    <ul>
+    {% for post in item %}
+        <li><a href="/news/{{ post.link }}/" > {{ post.title }} </a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+<p><a href="/news/create/">Create</a></p>
+{{q}}
+</body>
+</html>
